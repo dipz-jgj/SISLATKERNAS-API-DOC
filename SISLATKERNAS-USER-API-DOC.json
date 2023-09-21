@@ -1,0 +1,662 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "User API",
+    "description": "User API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "paths": {
+    "/api/v1/users": {
+      "get": {
+        "description": "Ambil semua data user / melakukan pencarian & filter data",
+         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          },
+          {
+            "name": "nama_lengkap",
+            "in": "query"
+          },
+          {
+            "name": "email",
+            "in": "query"
+          },
+          {
+            "name": "no_kontak",
+            "in": "query"
+          },
+          {
+            "name": "size",
+            "in": "query"
+          },
+          {
+            "name": "page",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses mengambil data users / melakukan pencarian / filter",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                        "id": {
+                          "type": "integer"
+                        },
+                          "email": {
+                          "type": "string"
+                        },
+                         "password": {
+                          "type": "string"
+                        },
+                         "nama_lengkap": {
+                          "type": "string"
+                        },
+                         "url_photo": {
+                          "type": "string"
+                        },
+                         "no_kontak": {
+                          "type": "string"
+                        },
+                         "nik": {
+                          "type": "string"
+                        },
+                         "asal_instansi": {
+                          "type": "string"
+                        },
+                         "jabatan": {
+                          "type": "string"
+                        },
+                         "gol_pns": {
+                          "type": "string"
+                        },
+                         "keahlian": {
+                          "type": "string"
+                        },
+                         "npwp": {
+                          "type": "string"
+                        },
+                         "noreg_asesor": {
+                          "type": "string"
+                        },
+                         "nip": {
+                          "type": "string"
+                        },
+                         "is_active": {
+                          "type": "integer"
+                        },
+                         "is_sso_login": {
+                          "type": "integer"
+                        },
+                         "role": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          }
+                        }
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "object"
+                    },
+                    "meta": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user": {
+      "post": {
+        "description": "Mendaftarkan/membuat user baru",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "email", "password", "nama_lengkap", "nik", "is_active"
+                ],
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                   "password": {
+                    "type": "string"
+                  },
+                   "nama_lengkap": {
+                    "type": "string"
+                  },
+                   "url_photo": {
+                    "type": "string"
+                  },
+                   "no_kontak": {
+                    "type": "string"
+                  },
+                   "nik": {
+                    "type": "string"
+                  },
+                   "asal_instansi": {
+                    "type": "string"
+                  },
+                   "jabatan": {
+                    "type": "string"
+                  },
+                   "gol_pns": {
+                    "type": "string"
+                  },
+                   "keahlian": {
+                    "type": "string"
+                  },
+                   "npwp": {
+                    "type": "string"
+                  },
+                   "noreg_asesor": {
+                    "type": "string"
+                  },
+                   "nip": {
+                    "type": "string"
+                  },
+                   "is_active": {
+                    "type": "integer"
+                  },
+                   "is_sso_login": {
+                    "type": "integer"
+                  },
+                   "id_role": {
+                    "type": "array",
+                      "items": {
+                        "type": "integer"
+                      }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "400": {
+            "description": "Validation error",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "validationerror": {
+                    "description": "Validation error",
+                    "value": {
+                      "errors": {
+                        "email": [
+                          "email tidak boleh kosong"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Sukses mendaftarkan/membuat user baru",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "email": {
+                          "type": "string"
+                        },
+                         "password": {
+                          "type": "string"
+                        },
+                         "nama_lengkap": {
+                          "type": "string"
+                        },
+                         "url_photo": {
+                          "type": "string"
+                        },
+                         "no_kontak": {
+                          "type": "string"
+                        },
+                         "nik": {
+                          "type": "string"
+                        },
+                         "asal_instansi": {
+                          "type": "string"
+                        },
+                         "jabatan": {
+                          "type": "string"
+                        },
+                         "gol_pns": {
+                          "type": "string"
+                        },
+                         "keahlian": {
+                          "type": "string"
+                        },
+                         "npwp": {
+                          "type": "string"
+                        },
+                         "noreg_asesor": {
+                          "type": "string"
+                        },
+                         "nip": {
+                          "type": "string"
+                        },
+                         "is_active": {
+                          "type": "integer"
+                        },
+                         "is_sso_login": {
+                          "type": "integer"
+                        },
+                         "id_role": {
+                          "type": "array",
+                            "items": {
+                              "type": "integer"
+                            }
+                        },
+                      }
+                    },
+                    "errors": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/login": {
+      "post": {
+        "description": "Login user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+         "401": {
+            "description": "Login gagal",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "validationerror": {
+                    "value": {
+                      "errors": {
+                        "messages": [
+                          "email or password wrong"
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Login sukses",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string"
+                        },
+                          "token_type": {
+                          "type": "string"
+                        },
+                         "expires_in": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/user/current": {
+      "get": {
+        "description": "Ambil data user yang sedang login",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses mengambil data user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "email": {
+                          "type": "string"
+                        },
+                         "password": {
+                          "type": "string"
+                        },
+                         "nama_lengkap": {
+                          "type": "string"
+                        },
+                         "url_photo": {
+                          "type": "string"
+                        },
+                         "no_kontak": {
+                          "type": "string"
+                        },
+                         "nik": {
+                          "type": "string"
+                        },
+                         "asal_instansi": {
+                          "type": "string"
+                        },
+                         "jabatan": {
+                          "type": "string"
+                        },
+                         "gol_pns": {
+                          "type": "string"
+                        },
+                         "keahlian": {
+                          "type": "string"
+                        },
+                         "npwp": {
+                          "type": "string"
+                        },
+                         "noreg_asesor": {
+                          "type": "string"
+                        },
+                         "nip": {
+                          "type": "string"
+                        },
+                         "is_active": {
+                          "type": "integer"
+                        },
+                         "is_sso_login": {
+                          "type": "integer"
+                        },
+                         "id_role": {
+                          "type": "array",
+                            "items": {
+                              "type": "integer"
+                            }
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "description": "Update data user yang saat ini login",
+         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "description": "Memperbarui data user",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nama_lengkap": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                 "id_role": {
+                    "type": "array",
+                      "items": {
+                        "type": "integer"
+                      }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses memperbarui data user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "email": {
+                          "type": "string"
+                        },
+                         "password": {
+                          "type": "string"
+                        },
+                         "nama_lengkap": {
+                          "type": "string"
+                        },
+                         "url_photo": {
+                          "type": "string"
+                        },
+                         "no_kontak": {
+                          "type": "string"
+                        },
+                         "nik": {
+                          "type": "string"
+                        },
+                         "asal_instansi": {
+                          "type": "string"
+                        },
+                         "jabatan": {
+                          "type": "string"
+                        },
+                         "gol_pns": {
+                          "type": "string"
+                        },
+                         "keahlian": {
+                          "type": "string"
+                        },
+                         "npwp": {
+                          "type": "string"
+                        },
+                         "noreg_asesor": {
+                          "type": "string"
+                        },
+                         "nip": {
+                          "type": "string"
+                        },
+                         "is_active": {
+                          "type": "integer"
+                        },
+                         "is_sso_login": {
+                          "type": "integer"
+                        },
+                         "id_role": {
+                          "type": "array",
+                            "items": {
+                              "type": "integer"
+                            }
+                        }
+                      }
+                    },
+                    "errors": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/logout": {
+      "delete": {
+        "description": "User logout",
+         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses logout user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "boolean"
+                    },
+                    "errors": {
+                      "type": "object"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/refresh": {
+      "post": {
+        "description": "Regenerate JWT auth token",
+         "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Sukses regenerate JWT auth token",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "access_token": {
+                          "type": "string"
+                        },
+                          "token_type": {
+                          "type": "string"
+                        },
+                         "expires_in": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/users-import": {
+      "post": {
+        "description": "Impor data user dari file xlsx",
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header"
+          }
+        ],
+        "requestBody": {
+          "description": "Upload file",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sukses melakukan impor data user",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                      "properties": {
+                        "data": {
+                          "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
